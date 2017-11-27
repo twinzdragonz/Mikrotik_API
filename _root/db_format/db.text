@@ -1,0 +1,133 @@
+CREATE TABLE "company" (
+	"id" INT IDENTITY(1,1) NOT NULL,
+	"name" VARCHAR(400) NULL DEFAULT NULL,
+	"regNo" VARCHAR(120) NULL DEFAULT NULL,
+	"address1" VARCHAR(100) NULL DEFAULT NULL,
+	"address2" VARCHAR(100) NULL DEFAULT NULL,
+	"address3" VARCHAR(100) NULL DEFAULT NULL,
+	"city" VARCHAR(50) NULL DEFAULT NULL,
+	"postCode" VARCHAR(20) NULL DEFAULT NULL,
+	"country" VARCHAR(30) NULL DEFAULT NULL,
+	"contactName" VARCHAR(30) NULL DEFAULT NULL,
+	"contactNumber" VARCHAR(30) NULL DEFAULT NULL,
+	"contactUserId" INT NULL DEFAULT NULL,
+	"groupcompanyId" INT NOT NULL,
+	"remarks" VARCHAR(200) NULL DEFAULT NULL,
+	"status" VARCHAR(50) NULL DEFAULT NULL,
+	"createdAt" DATETIME NULL DEFAULT NULL,
+	"updateAT" DATETIME NULL DEFAULT NULL,
+	"updateBy" VARCHAR(100) NULL DEFAULT NULL,
+     PRIMARY KEY ("id")
+)
+;
+
+CREATE TABLE "generalLogging" (
+	"id" INT IDENTITY(1,1) NOT NULL,
+	"folderName" VARCHAR(200) NULL DEFAULT NULL,
+	"folderId" VARCHAR(150) NULL DEFAULT NULL,
+	"description" VARCHAR(200) NULL DEFAULT NULL,
+	"status" VARCHAR(50) NULL DEFAULT NULL,
+	"by" VARCHAR(100) NULL DEFAULT NULL,
+	"timestamp" DATETIME NOT NULL,
+	PRIMARY KEY ("id")
+)
+;
+
+// 1 to many company
+CREATE TABLE "user_company_matches"(
+"id" INT IDENTITY(1,1) NOT NULL,
+"company_id" INT NOT NULL,
+"userId" INT NOT NULL
+
+);
+
+
+CREATE TABLE "user_content_access"(
+"id" INT IDENTITY(1,1) NOT NULL,
+"accessName" VARCHAR(50) NOT NULL,
+"description" VARCHAR(50) NOT NULL,
+"category" VARCHAR(50) NOT NULL,
+"offset" INT NOT NULL,
+"status" VARCHAR(3) NOT NULL
+PRIMARY KEY ("id")
+);
+
+
+// nesting group
+CREATE TABLE "user_permission_matches"(
+"id" INT IDENTITY(1,1) NOT NULL,
+"user_id" INT NOT NULL,
+"usertype_id" INT NOT NULL
+
+);
+
+CREATE TABLE "userAdmin" (
+	"id" INT NOT NULL,
+	"companyId" INT NULL DEFAULT NULL,
+	"userTypeId" INT NULL DEFAULT NULL,
+	"email" VARCHAR(45) NULL DEFAULT NULL,
+	"ic" VARCHAR(25) NULL DEFAULT NULL,
+	"telMobile" VARCHAR(50) NULL DEFAULT NULL,
+	"telOther" VARCHAR(30) NULL DEFAULT NULL,
+	"status" VARCHAR(20) NULL DEFAULT NULL,
+    "infoKey" VARCHAR(20) NULL DEFAULT NULL,
+    "InfoValue" INT NULL DEFAULT NULL
+)
+;
+
+
+
+CREATE TABLE "users" (
+	"userId" INT IDENTITY(1,1) NOT NULL,
+	"uUsername" VARCHAR(128) NOT NULL UNIQUE,
+	"uPassword" VARCHAR(40) NOT NULL,
+	"uSalt" VARCHAR(128) NOT NULL,
+	"uActivity" DATETIME NOT NULL,
+	"uCreated" DATETIME NOT NULL,
+	PRIMARY KEY ("userid")
+)
+;
+
+
+// grouping the users
+CREATE TABLE "userType"(
+	"id" INT IDENTITY(1,1)  NOT NULL,
+	"name" VARCHAR(50) NULL DEFAULT NULL,
+	"description" VARCHAR(50) NULL DEFAULT NULL,
+	"status" VARCHAR(35) NULL DEFAULT NULL,
+     PRIMARY KEY ("id")
+)
+;
+
+
+CREATE TABLE "userType_content_access_matches"(
+
+"id" INT NOT NULL,
+"accessName" VARCHAR(50) NOT NULL,
+"accessLevel" VARCHAR(50) NOT NULL
+);
+
+
+CREATE TABLE "transaction_table"(
+
+"id" INT IDENTITY(1,1) NOT NULL,
+"userId" INT NOT NULL,
+"companyId" INT NOT NULL,
+"description" VARCHAR(50) NOT NULL,
+"amount" VARCHAR(100) NOT NULL,
+"status" VARCHAR(3) NOT NULL,
+"createdAt" DATETIME NOT NULL
+PRIMARY KEY ("id")
+
+
+
+);
+
+
+
+
+
+
+
+
+

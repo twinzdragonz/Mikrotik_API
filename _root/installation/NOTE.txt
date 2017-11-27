@@ -1,0 +1,3 @@
+
+Required php >= 7.0
+Please turn on socket extension from php

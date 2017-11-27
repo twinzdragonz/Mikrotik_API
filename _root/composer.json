@@ -1,0 +1,34 @@
+{
+  "name": "almasaeed2010/adminlte",
+  "description": "AdminLTE - admin control panel and dashboard that's based on Bootstrap 3",
+  "homepage": "https://adminlte.io/",
+  "keywords": [
+    "css",
+    "js",
+    "less",
+    "responsive",
+    "back-end",
+    "template",
+    "theme",
+    "web",
+    "admin"
+  ],
+  "authors": [
+    {
+      "name": "Abdullah Almsaeed",
+      "email": "abdullah@almsaeedstudio.com"
+    }
+  ],
+      "autoload": {
+        "psr-0": {
+            "MikrotikAPI": "src/",
+            "MikrotikAPITest": "test/"
+        }
+    },
+
+
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/almasaeed2010/AdminLTE/issues"
+  }
+}
