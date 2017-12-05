@@ -1,5 +1,13 @@
 <?php require("_root/common_linker.php");?>
 <?php require("content/preprocessing.php"); ?>
+<?php require("content/Router_validation.php"); ?>
+<?php 
+
+// indiviudual function call here 
+
+
+?>
+
 
 <?php 
 $strFolder = "Dashboard";
@@ -27,7 +35,7 @@ $strPageDesc = "";
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dashboard
+       <?php echo $strFolder; ?>
         <small></small>
       </h1>
 
@@ -40,50 +48,50 @@ $strPageDesc = "";
       </ol>   
     </section>
 
-    <!-- Main content -->
-    <section class="content container-fluid">
+    <section class="content">
+   <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-signal"></i></span>
 
-   <div class="box">
-        <div class="box-header with-border">
-          <h3 class="box-title">Hello</h3>
-
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
-              <i class="fa fa-minus"></i></button>
+            <div class="info-box-content">
+              <span class="info-box-text">IP address </span>
+              <span class="info-box-number"><?php echo $thisRouter_IP; ?></span>
+            </div>
+            <!-- /.info-box-content -->
           </div>
-        </div>
-        <div class="box-body">
+          <!-- /.info-box -->
+        </div> 
 
-        <?php // change this with graph and so on.. lel.. ?> 
-      <?php
-      /* This sets the $time variable to the current hour in the 24 hour clock format */
-      $time = date("H");
-      /* Set the $timezone variable to become the current timezone */
-      $timezone = date("e");
-      /* If the time is less than 1200 hours, show good morning */
-      if ($time < "12") {
-          echo "Good morning"." ".$client["uUsername"]." what should we do today?";
-      } else
-      /* If the time is grater than or equal to 1200 hours, but less than 1700 hours, so good afternoon */
-      if ($time >= "12" && $time < "17") {
-          echo "Good afternoon"." ".$client["uUsername"]." what should we do today?";
-      } else
-      /* Should the time be between or equal to 1700 and 1900 hours, show good evening */
-      if ($time >= "17" && $time < "19") {
-          echo "Good evening"." ".$client["uUsername"]." what should we do today?";
-      } else
-      /* Finally, show good night if the time is greater than or equal to 1900 hours */
-      if ($time >= "19") {
-          echo "Good evening"." ".$client["uUsername"]." are u burning the midnight oil";
-      }
-      ?>
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-    
-        </div>
-        <!-- /.box-footer-->
-      </div>
+          <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-blue"><i class="fa fa-eye"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Port</span>
+              <span class="info-box-number"><?php echo "Private" ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div> 
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-orange"><i class="fa fa-connectdevelop"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text"> Status </span>
+              <span class="info-box-number"><?php echo "Connected" ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div> 
+
+
+   </div>
+
     </section>
     <!-- /.content -->
   </div>

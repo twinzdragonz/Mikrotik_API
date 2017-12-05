@@ -1,29 +1,22 @@
-<?php 
-
-
-?>
 <?php require("_root/common_linker.php");?>
-<?php
 
+<?php
 
 use MikrotikAPI\Talker\Talker;
 use \MikrotikAPI\Entity\Auth;
 use MikrotikAPI\Commands\IP\Address;
 use MikrotikAPI\Commands\IP\Firewall\FirewallFilter;
 
-
 session_start();
 
+$this_session_id = session_id();
 $pop_up = false;
-
-
 //
 //POST
 //
-
-if(isset($_POST['ipaddress']) || isset($_POST['port']) || isset($_POST['username']) || isset($_POST['password']))
+if(!is_null($_POST['ipaddress']) || !is_null($_POST['username']) )
 {
-    if(is_null($_POST['ipaddress']))
+    if(!isset($_POST['ipaddress']))
     {
         $pop_up = true;
         $warning_level = 3;
@@ -40,7 +33,7 @@ if(isset($_POST['ipaddress']) || isset($_POST['port']) || isset($_POST['username
     }   */
 
 
-    if(is_null($_POST['username']))
+    if(!isset($_POST['username']))
     {
         $pop_up = true;
         $warning_level = 3;
@@ -48,13 +41,14 @@ if(isset($_POST['ipaddress']) || isset($_POST['port']) || isset($_POST['username
         $error_message = " Username can't be empty!";
     }
 
-    if(is_null($_POST['password']))
+    if(!isset($_POST['password']))
     {
         $pop_up = true;
         $warning_level = 3;
         $error_title = "Whooops!";
         $error_message = " Password can't be empty!";
     }
+
 
 $auth = new Auth();
 $auth->setHost($_POST['ipaddress']);
@@ -64,11 +58,33 @@ $auth->setPassword($_POST['password']);
 $auth->setDebug(true);
 
 $talker = new Talker($auth);
-//$filter = new FirewallFilter($talker);
-//$a = $filter->getAll();
+
 $ipaddr = new Address($talker);
-$listIP = $ipaddr->getAll();
-MikrotikAPI\Util\DebugDumper::dump($listIP);
+
+// if ipaddress is not null go to dashboard? 
+  // preprocessing 
+if(!is_null($ipaddr))
+{
+
+  $_SESSION['ipaddress'] = $_POST['ipaddress'];
+  $_SESSION['username'] = $_POST['username'];
+  $_SESSION['password'] = $_POST['password'];
+   
+
+  $_SESSION['SSID'] = generateToken($_SESSION['ipaddress'].$_SESSION['username'].$_SESSION['password'],$this_session_id);
+
+ header("Location: dashboard.php?SSID=".padzero($_SESSION['SSID']));
+  exit; 
+}
+else
+{
+  $pop_up = true;
+  $warning_level = 3;
+   $error_title = "Error!";
+   $error_message = "Unable to connect to Router. Please Check The Connection ";
+
+}  
+
 
 }
 
@@ -97,7 +113,7 @@ MikrotikAPI\Util\DebugDumper::dump($listIP);
 <div class="login-box">
 
   <div class="login-logo">
-    <a href="../../index2.html"><b><?php echo $Web_Name; ?> </b><?php echo $Web_sec_Name; ?></a>
+    <a href="/login.php"><b><?php echo $Web_Name; ?> </b><?php echo $Web_sec_Name; ?></a>
   </div>
   <!-- /.login-logo -->
 

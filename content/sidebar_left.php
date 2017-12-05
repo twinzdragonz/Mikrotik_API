@@ -47,10 +47,9 @@
         <a href="/dashboard.php"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
           </li>
 
-      
-    
- 
-
+              <li class="<?php if ($strFolder == "Interfaces")echo "active";?>">
+        <a href="/interfaces.php"><i class="fa fa-microchip"></i><span>Interfaces</span></a>
+          </li>
 
       </ul>
       <!-- /.sidebar-menu -->

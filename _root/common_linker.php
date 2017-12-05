@@ -8,6 +8,7 @@ include($path."/constants.inc.php");
 
 // external lib
 include($path."/common_functions.php");
+include($path."/Router_common_functions.php");
 include($path."/web_functions.php");
 
 //

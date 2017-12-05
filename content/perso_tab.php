@@ -6,7 +6,7 @@
              <!-- <img src="<?php echo get_gravatar($client_info["email"]); ?>" class="user-image" alt="User Image"> -->
 
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs"><?php echo $client["uUsername"]; ?></span>
+              <span class="hidden-xs">Admin</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->

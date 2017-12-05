@@ -1,5 +1,6 @@
 <?php
 
+
  function common_error_message()
   {
      return  bootstrap_alert(4,"System Error! ","Unexpected problem happen ");
@@ -98,9 +99,11 @@ function padZero($number)
 
 
 
+
+
 function generateToken($vector, $id)
 {
-  $checkSum = crc32("erp".$vector.$id);
+  $checkSum = crc32("Mikrotik_API".$vector.$id);
   return $checkSum;
 }
 
@@ -119,6 +122,7 @@ function drawTableRow($title, $prefix, $data, $postfix, $option=null)
 
 function drawTableRowInput($title, $prefix, $inputName, $data, $postfix, $option=null,$type=null)
 {
+  $inputOption;
   if(strpos($option, "-readonly-"))
   {
       $inputOption = "READONLY";
@@ -140,9 +144,22 @@ function drawTableRowInput($title, $prefix, $inputName, $data, $postfix, $option
 
 
 
-function drawBadge($text, $color)
+function drawBadge_on_right($text, $color)
 {
   $strHtml = "<span class='pull-right badge bg-$color'>$text</span>";
+
+  return $strHtml;
+}
+function drawBadge_on_left($text, $color)
+{
+  $strHtml = "<span class='pull-left badge bg-$color'>$text</span>";
+
+  return $strHtml;
+}
+
+function drawBadge($text, $color)
+{
+  $strHtml = "<span class=' badge bg-$color'>$text</span>";
 
   return $strHtml;
 }
